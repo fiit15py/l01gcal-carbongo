@@ -43,15 +43,15 @@ def main():
                 'timeZone': 'Asia/Yakutsk',
             },
             'end': {
-                'dateTime':  '2018-10-08T' + _time_end[(i-3)%6] + '00+09:00',
+                'dateTime':  '2018-10-08T' + _time_end[(i-3)%6] + ':00+09:00',
                 'timeZone': 'Asia/Yakutsk',
             },
             'recurrence': [
                 'RRULE:FREQ=WEEKLY;BYDAY=' + _curr_day[(i-3)%6%6]
             ]
         }
-        if not _name:
-            event = service.events().insert(calendarId='primary', body=event).execute()
+        recurring_event = service.events().insert(calendarId='primary', body=event).execute()
+
 
 if __name__ == '__main__':
     main()
