@@ -25,12 +25,14 @@ def main():
 
     _curr_day = ['MO','TU','WE','TH','FR','SA']
     day_counter = -1
+    day_recurring = 7
     _time_start = ['08:00', '09:50', '11:40', '14:00', '15:45', '17:30']
     _time_end = ['09:35', '11:25', '13:15', '15:35', '17:20', '19:05']
 
     for i in range(3,39): 
         if (i-3)%6==0:
             day_counter = day_counter+1
+            day_recurring = day_recurring+1
         if curr_sheet.cell(i,8).value== "":
             continue
         _name = curr_sheet.cell(i, 8).value
@@ -42,11 +44,11 @@ def main():
             'location': _location,
             'description': _type,
             'start': {
-                'dateTime': '2018-10-08T' + _time_start[(i-3)%6] + ':00+09:00',
+                'dateTime': '2018-10-' + str(day_recurring) + 'T' + _time_start[(i-3)%6] + ':00+09:00',
                 'timeZone': 'Asia/Yakutsk',
             },
             'end': {
-                'dateTime':  '2018-10-08T' + _time_end[(i-3)%6] + ':00+09:00',
+                'dateTime':  '2018-10-' + str(day_recurring) + 'T' + _time_end[(i-3)%6] + ':00+09:00',
                 'timeZone': 'Asia/Yakutsk',
             },
             'recurrence': [
